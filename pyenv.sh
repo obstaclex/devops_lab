@@ -3,7 +3,7 @@ sudo yum install @development zlib-devel bzip2 bzip2-devel readline-devel sqlite
     sqlite-devel openssl-devel xz xz-devel libffi-devel findutils -y
 
 # Change homedir and install pyenv
-username="${obstaclex}"
+username="${provided_by_terraform_or_CM_tool}"
 
 if [ -z $username ]; then
     sudo su root
