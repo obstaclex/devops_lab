@@ -3,6 +3,8 @@ from setuptools import setup, find_packages
 INSTALL_REQUIREMENTS = [
     'psutil>=4.2.0, <6.0.0'
 ]
+
+
 def do_setup():
     setup(
         name='Snapshot_system_params',
@@ -17,6 +19,7 @@ def do_setup():
         description="Script for collect system metrics",
         install_requires=INSTALL_REQUIREMENTS
     )
+
 
 if __name__ == "__main__":
     do_setup()

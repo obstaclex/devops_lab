@@ -25,8 +25,8 @@ class Snapshot():
             json.dump(json_data, outfile, indent=4)
 
     def save_as_plain_text(self):
-        txt_file = open("snapshot.txt", "a+")
-        txt_file.write('{}; cpu_usage is {}%; memory_usage is {}%; virtual_memory_usage is {}%.\n'.format(
+        f = open("snapshot.txt", "a+")
+        f.write('{}; cpu_usage is {}; memory_usage is {}; virtual_memory_usage is {}\n'.format(
             self.name, self.cpu_usage, self.memory_usage, self.virtual_memory_usage))
 
 
@@ -41,7 +41,7 @@ args = parser.parse_args()
 # Create empty file for reset log counter
 json_data = {}
 if args.type != "json":
-    txt_file = open("snapshot.txt", "w")
+    f = open("snapshot.txt", "w")
 
 
 # Cycle for permanent running
