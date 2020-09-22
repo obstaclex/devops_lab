@@ -1,7 +1,7 @@
 DevOps Lab 2020 summer
 # Python
 
-For install package download perositoty and use next command in this directory
+For install package download repository and use next command inside
 
 ** pip install . **
 
