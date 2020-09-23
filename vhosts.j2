@@ -1,0 +1,16 @@
+{% for vhost in vhosts %}
+<VirtualHost *:{{ vhost.port }}>
+  ServerName {{ vhost.servername }}
+  DocumentRoot {{ vhost.directoryroot }}
+  {% if vhost.serveradmin %}ServerAdmin {{ vhost.serveradmin }}
+  {% endif -%}
+  ErrorLog {{ vhost.log_path }}/error.log
+  CustomLog {{ vhost.log_path }}/access.log combined
+  <Directory "/">
+     AllowOverride All
+     Options Indexes FollowSymLinks
+     Order allow,deny
+     Allow from all
+  </Directory>
+</VirtualHost>
+{% endfor %}

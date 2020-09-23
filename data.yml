@@ -1,0 +1,10 @@
+vhosts:
+  - port: 80
+    servername: www.test.page
+    directoryroot: /http1/www
+    log_path: /path/to/log/http_1
+  - port: 443
+    servername: www.imelnik1.local
+    directoryroot: /http2/www
+    log_path: /path/to/log/http_2
+    serveradmin: imelnik1@epam.com
