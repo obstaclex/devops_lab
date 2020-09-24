@@ -1,6 +1,6 @@
 # Function for create list
 def create_list():
-    lst = list(map(int,input().split()))
+    lst = list(map(int, input().split()))
     return lst
 
 
