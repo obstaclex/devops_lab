@@ -45,12 +45,18 @@ if args.type != "json":
 
 
 # Cycle for permanent running
-i = 0
-while True:
-    i += 1
-    a = Snapshot(i)
-    if args.type == "json":
-        a.save_as_json()
-    else:
-        a.save_as_plain_text()
-    time.sleep(args.interval)
+
+def main():
+    i = 0
+    while True:
+        i += 1
+        a = Snapshot(i)
+        if args.type == "json":
+            a.save_as_json()
+        else:
+            a.save_as_plain_text()
+        time.sleep(args.interval)
+
+
+if __name__ == "__main__":
+    main()
