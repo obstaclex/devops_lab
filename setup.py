@@ -12,7 +12,7 @@ def do_setup():
         packages=find_packages(),
         entry_points={
             'console_scripts':
-                ['snapshot = collect_info.main']
+            ['snapshot = collect_info.main:main']
         },
         author="Ilya_Melnik1",
         author_email="Ilya_Melnik1@epam.com",
