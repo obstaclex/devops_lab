@@ -1,18 +1,6 @@
 # Function for create list
 def create_list():
-    lst = []
-    n = input("Enter number of element:")
-    try:
-        val = int(n)
-        for i in range(val):
-            element = input("Enter {} element:".format(i + 1))
-            lst.append(element)
-    except ValueError:
-        try:
-            val = float(n)
-            print("Input is not a int. It's a float")
-        except ValueError:
-            print("Input is not a int. It's a string")
+    lst = list(map(int,input().split()))
     return lst
 
 
