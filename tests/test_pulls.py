@@ -19,3 +19,9 @@ class FlaskApp(TestCase):
         """Test for parse based on label"""
         self.assertEqual(handlers.pulls.parse_json_label("accepted", template), accepted)
         self.assertEqual(handlers.pulls.parse_json_label("needs work", template), needs_work)
+
+    def test_get_pulls(self):
+        """Test for pull data"""
+        self.assertEqual(handlers.pulls.get_pulls("open", json=template), open_label)
+        self.assertEqual(handlers.pulls.get_pulls("accepted", json=template), accepted)
+        self.assertEqual(handlers.pulls.get_pulls(" ", json=template), full)
