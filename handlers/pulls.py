@@ -6,46 +6,47 @@ URL = 'https://api.github.com/repos/alenaPy/devops_lab/pulls'
 
 
 def get_pulls(state):
+    json = get_json()
     if state == "open" or state == "closed":
-        return based_on_state(state)
+        return parse_json_state(state, json)
     elif state == "accepted" or state == "needs work":
-        return based_on_label(state)
+        return parse_json_label(state, json)
     else:
-        return get_all()
+        return parse_json(json)
 
 
-def get_info():
+def get_json():
     get = requests.get(URL, params=URI_PARAMS, auth=(LOGIN, PASSWORD))
-    github_info = get.json()
-    return github_info
+    response = get.json()
+    return response
 
 
-def get_all():
-    list_json_data = []
-    for x in get_info():
-        list_json_data.append(
+def parse_json(json):
+    output_json = []
+    for x in json:
+        output_json.append(
             {'num': x['number'], 'link': x['html_url'], 'title': x['title']})
-    return list_json_data
+    return output_json
 
 
-def based_on_state(state):
-    list_json_data = []
+def parse_json_state(state, json):
+    output_json = []
     if state == "open" or state == "closed":
-        for x in get_info():
+        for x in json:
             if x['state'] == state:
-                list_json_data.append(
+                output_json.append(
                     {'num': x['number'], 'link': x['html_url'], 'title': x['title']})
-    return list_json_data
+    return output_json
 
 
-def based_on_label(state):
-    list_json_data = []
+def parse_json_label(state, json):
+    output_json = []
     if state == "accepted" or state == "needs work":
-        for x in get_info():
+        for x in json:
             if x['labels'] == []:
                 continue
             else:
                 if x['labels'][0]['name'] == state:
-                    list_json_data.append(
+                    output_json.append(
                         {'num': x['number'], 'link': x['html_url'], 'title': x['title']})
-    return list_json_data
+    return output_json
