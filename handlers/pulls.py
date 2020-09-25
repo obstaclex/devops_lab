@@ -10,6 +10,8 @@ def get_pulls(state):
         return based_on_state(state)
     elif state == "accepted" or state == "needs work":
         return based_on_label(state)
+    else:
+        return get_all()
 
 
 def get_info():
@@ -18,16 +20,21 @@ def get_info():
     return github_info
 
 
+def get_all():
+    list_json_data = []
+    for x in get_info():
+        list_json_data.append(
+            {'num': x['number'], 'link': x['html_url'], 'title': x['title']})
+    return list_json_data
+
+
 def based_on_state(state):
     list_json_data = []
     if state == "open" or state == "closed":
         for x in get_info():
             if x['state'] == state:
-                json_data = {}
-                json_data['num'] = x['number']
-                json_data['link'] = x['html_url']
-                json_data['title'] = x['title']
-                list_json_data.append(json_data)
+                list_json_data.append(
+                    {'num': x['number'], 'link': x['html_url'], 'title': x['title']})
     return list_json_data
 
 
@@ -39,9 +46,6 @@ def based_on_label(state):
                 continue
             else:
                 if x['labels'][0]['name'] == state:
-                    json_data = {}
-                    json_data['num'] = x['number']
-                    json_data['link'] = x['html_url']
-                    json_data['title'] = x['title']
-                    list_json_data.append(json_data)
+                    list_json_data.append(
+                        {'num': x['number'], 'link': x['html_url'], 'title': x['title']})
     return list_json_data
