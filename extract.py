@@ -29,7 +29,7 @@ except Exception as err:
 
 # Remove directory without __init__.py
 for dirpath, dirnames, filenames in os.walk(tmpdir):
-    if "__init__.py" not in filenames and dirnames == []:
+    if "__init__.py" not in filenames and f'{args.name}' not in dirnames:
         shutil.rmtree(dirpath)
         logging.debug(f'Directory {dirpath} not contain required file and deleted')
 
